@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        {{n}}
+       <button @click="add">点我加一</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                n:1
+                 },
+            methods: {
+                add(){
+                    this.n++
+                }
+            },
+           //生命周期和事件初始化，但数据代理还没有开始
+           //无法通过vm访问到data的数据和methods的方法
+            beforeCreated() {
+                
+            },
+            
+
+            //初始化数据检测和数据代理
+            //可以通过vm访问data中的数据和methods的方法
+
+            created() {
+                // debugger;
+            },
+
+
+            // 有el:'#root'或者template模板才可以有下面的
+            //vue开始解析模板 生成虚拟dom 页面还不能显示解析好的内容
+
+            beforeMount() {
+                debugger//不能操作dom
+            },
+
+            //虚拟dom转真实dom插入页面
+
+            mounted() {
+                //编译过的dom
+                //对dom操作有效 但是只有第一次初始化的时候有效（一次）
+                //一般用于 开启定时器 发生网络请求 订阅消息 绑定自定义事件
+                
+            },
+
+
+            //更新
+
+
+            beforeUpdate() {
+                //数据改变 数据新的 但是页面旧的（页面没有变化 但是consle数据变了）
+            },
+
+            updated() {
+                //数据新的 页面新的
+            },
+
+
+            //销毁 使用了vm.$destroy启用
+
+            beforeDestroy() {
+                //vm的data methods 都处于可用状态，马上要执行销毁的过程（可以访问但是不能改变）
+                //一般用于关闭定时器 取消订阅消息 解绑自定义事件等收尾工作
+            },
+
+            destroyed() {
+                //移除监视（watch），组件，事件监听器（自定义）
+            },
+
+
+
+
+
+
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

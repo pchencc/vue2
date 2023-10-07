@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        
+        <h2>hi,我叫{name}</h2>
+
+        <input type="text" placeholder="按下回车提示输入" @keyup.ctrl="showInfo">
+    </div>
+   
+    
+</body>
+
+<script>
+    Vue.config.productionTip = false;
+
+    const v= new Vue({
+        el:'#root',
+        data:{
+
+            name:'潘晨',
+            
+        },
+        methods:{
+            showInfo(e){//1.e.keycode 回车的编码是13 按下回车的时候 输出输出框的信息
+                        //2. .enter表示1
+                // if(e.keyCode!==13) return 
+                console.log(e.target.value)
+                
+                
+            }
+        }
+        
+    });
+
+</script>
+</html>

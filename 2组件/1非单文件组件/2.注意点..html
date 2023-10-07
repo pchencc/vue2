@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>{{msg}}</h1>
+        3.使用my组件 显示姓名和年龄
+        <my-name></my-name>
+
+
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+
+        //1.创建组件
+        // const myname = Vue.extend({
+        // template:`
+        // <div>
+        //     <h2>我的名字：{{name}}</h2>
+        //     <h2>我的年龄：{{age}}</h2>
+        // </div>
+        // `,
+        // data(){
+        //     return{
+        //         name:'无敌的潘晨',
+        //         age:18
+        //     }
+        // }
+        // })
+
+        //1.1创建简写
+        const myname = {
+        template:`
+        <div>
+            <h2>我的名字：{{name}}</h2>
+            <h2>我的年龄：{{age}}</h2>
+        </div>
+        `,
+        data(){
+            return{
+                name:'无敌的潘晨',
+                age:18
+            }
+        }
+        }
+
+        new Vue({
+            el:'#root',
+            //2.注册
+            components:{
+            'my-name':myname//组件名1.一个单词my 开头大写 My 
+            //2.多个单词myname 'my-name'在vue里面显示的是MyName
+            
+            },
+            data:{
+                msg:'亲爱的晨 加油'
+            }
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- v-text和v-html都是将里面全部替换 v-html可以解析h3等元素 text不能-->
+        <h2>hi,{{name}}</h2>
+        <h2 v-text="name">hi,</h2>
+        <h2 v-text="str">hi,</h2>
+        <h2 v-html="name">hi,</h2>
+        <h2 v-html="str">hi,</h2>
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                name:'panchen',
+                str:'<h3>hihi</h3>'
+                 }
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

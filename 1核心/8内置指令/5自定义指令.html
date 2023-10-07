@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click="n++">n+1</button>
+        <h2>{{n}}</h2>
+       <h2>放大10倍:<span v-big="n"></span></h2>
+       <h2>放大10倍:<span v-big-number="n+1"></span></h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                n:1
+                 },
+            directives:{
+                //big什么时候被调用 与元素成功绑定的时候 模板被重新解析(data数据变化)
+                big(element,binding){
+                    element.innerText=binding.value*10
+
+                },
+                'big-number':function(element,binding){
+                    element.innerText=binding.value*10
+
+                }
+            }
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data ={
+            name:'潘晨',
+            age:18
+        }
+
+        //模拟vue
+
+        const obs = new Observer(data)//创建实例观察data属性
+        console.log(obs)
+        let vm = {}
+            vm._data = data = obs 
+
+        //定义observer
+        function Observer(obj){
+
+            
+             
+
+            //object.keys 列举对象中的所有属性
+            const keys= Object.keys(obj)
+            keys.forEach((k)=>{//k是属性 obj[k]属性值
+            Object.defineProperty(this,k,{//定义方法 this是obj对象 k是属性
+               get(){
+                return obj[k]
+               },
+               set(val){
+                console.log(`${k}被改了`)
+                obj[k]=val
+               }
+            })
+            })
+
+
+        }
+    </script>
+</body>
+</html>

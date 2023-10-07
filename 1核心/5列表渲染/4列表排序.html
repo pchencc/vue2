@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+       <h2>列表过滤</h2>
+       <input type="text" v-model="keyword">
+       <button @click="Typesort=1">年龄升序</button>
+       <button @click="Typesort=2">年龄降序</button>
+       <button @click="Typesort=0">原来顺序</button>
+       <ul>
+        <li v-for="p in show" :key="p.id">
+            {{p.name}}--{{p.age}}--{{p.sex}}
+
+        </li>
+       </ul>
+    </div>
+    <script>
+       Vue.config.productionTip = false;
+       new Vue({
+           el:'#root',
+           data:{
+            keyword:"",
+            Typesort:0,
+            persons:[
+                {id:'001',name:'潘晨',age:'18',sex:'1'},
+                {id:'002',name:'潘姐',age:'11',sex:'0'},
+                {id:'003',name:'晨姐',age:'19',sex:'1'}
+            ]
+                },
+           
+            // watch:{
+            //     keyword:{
+            //         immediate:true,
+            //         handler(val){//persons里面过滤 返回名字里面有val的 给show展示
+            //             this.show = this.persons.filter((p)=>{
+            //                 return p.name.indexOf(val) !==-1
+            //             })
+            //         }
+                  
+
+            //     },
+            // }
+
+            computed:{
+                show(){
+                   
+                        const arr= this.persons.filter((p)=>{//计算属性
+                        return p.name.indexOf(this.keyword)!==-1//filter
+                        })
+                        if(this.Typesort){
+                        arr.sort((p1,p2)=>{
+                            
+                                return this.Typesort===1 ? p1.age-p2.age:p2.age-p1.age
+                           
+                        })
+                    }
+                        return arr
+
+                    }
+                }
+            
+       });
+
+       
+    </script>
+    
+</body>
+</html>

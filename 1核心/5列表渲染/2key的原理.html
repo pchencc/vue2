@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click="add">加一个</button>
+        <ul>
+            <li v-for="(p,index) in persons" :key = "p.id">
+                {{p.name}}--{{p.age}}
+                <input type="text">
+            </li>
+        </ul>
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                persons:[
+                    {id:'001',name:'pan',age:18},
+                    {id:'002',name:'chen',age:28},
+                    {id:'003',name:'pc',age:38}
+                ]
+                 },
+            methods: {
+                add(){
+                    const p = {id:'004',name:'panc',age:19}
+                    this.persons.unshift(p)
+                }
+            },
+        });
+
+       
+    </script>
+    
+</body>
+</html>

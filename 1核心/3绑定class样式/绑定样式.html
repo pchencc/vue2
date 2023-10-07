@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .basic{
+            height: 50px;
+            width: 100px;
+            border: 1px black solid;
+
+        }
+        .bac1{
+            background-color: blue;
+        }
+        .bac2{
+            background-color: orange;
+        }
+        .bac3{
+            background-color: aqua;
+        }
+        .a1{
+            font-size: larger;
+        }
+        .a2{
+            color: palegoldenrod;
+        }
+        .a3{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="basic" :class = "a" @click = "change">
+            {{name}}
+        </div>
+        //数值 vm.arr.shift()删除 vm.arr.push('')加 绑定样式不确定名字也不确定
+        <div class="basic" :class = "arr">
+            {{name}}
+        </div>
+
+        //对象  格式名字确定 但不知道用不用
+        <div class="basic" :class = "obj" >
+            {{name}}
+        </div>
+
+        <div class="basic" :style = "{fontSize:size+'px'}" >
+            {{name}}
+        </div>
+
+        <div class="basic" :style = "styleobj" >
+            {{name}}
+        </div>
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'panchen',
+                a:'bac1',
+                arr:['a1','a2','a3'],
+                obj:{
+                    a1:false,
+                    a2:true,
+                    a3:true
+                },
+                size:40,
+                styleobj:{
+                    fontSize:'50px'
+                }
+            },
+            methods: {
+                change(){
+                    const arr = ['bac1','bac2','bac3']
+                   const index =  Math.floor(Math.random()*3)
+                   this.a = arr[index]
+                }
+            },
+        })
+
+       
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.9/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        现在是：{{time}}<br>
+        计算属性格式化时间{{oktime}}<br>
+        方法 格式化时间{{getoktime()}}<br>
+
+        过滤器实现1{{time | timeformater}}<br>
+        过滤器（传参）{{time | timeformater('YYYY-MM-DD')}}<br>
+        过滤器（多个过滤器一起用）{{time | timeformater('YYYY-MM-DD') | myslice}}<br>
+        
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+            time:1694679096454,
+                 },
+                 //计算得到 用别人的库
+            computed: {
+                oktime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+                //methods
+            methods: {
+                getoktime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                } 
+            },
+
+            filters:{
+                timeformater(val,str='YYYY-MM-DD HH:mm:ss'){
+                    return dayjs(val).format(str)
+
+                },//val是time str表示 |后面没有括号用str 用就用（）里面的
+               
+                myslice(val){
+                    return val.slice(0,4)
+                }//val是slice前面的一个结果 slice从0开始取4个
+            
+            }
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

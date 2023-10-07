@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<div id="root">
+
+    <h1>student information</h1>
+
+    <h2>name: {{name}}</h2>
+
+    <button @click="add">age add</button>
+
+    <h2>age: {{age}}</h2>
+
+    <button @click="addsex">add sex: woman</button>
+    <button @click="changesex">change sex</button>
+    <h2 v-if="student.sex !== ''">sex: {{student.sex}}</h2><br>
+
+   <button @click="addhobby">add a hobby</button>
+   <button @click="changehobby">changehobby</button>
+    <h2>hobby:</h2>
+    <ul><li v-for="h in student.hobby">{{h}}</li></ul>
+    
+    <button @click="addfriend">add a friend at first</button>
+    <button @click="changename">change name</button>
+
+    <h2>friends:</h2>
+    <ul><li v-for="f in student.friends" :key="f.id">{{f.name}}--{{f.age}}</li></ul>
+</div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                student:{
+                    friends:[
+                    {id:'01',name:'lucy',age:20},
+                    {id:'02',name:'lulu',age:19}
+                ],
+                    hobby:['eat','sleep','study'],
+                    sex:''
+                },
+                name:'panchen',
+                age:18,
+                
+             
+                 },
+            methods: {
+                add(){
+                 this.age++
+                },
+
+                addsex(){
+                    Vue.set(this.student,'sex','woman')
+
+                },
+                changesex(){
+                    Vue.set(this.student,'sex','man')
+                    //this.$set(this.student,'sex','man')
+                },
+
+                addfriend(){
+                    this.student.friends.unshift({id:'03',name:'jun',age:38})
+                },
+                changename(){
+                    this.student.friends[0].name = 'chenbaby'
+                },
+                addhobby(){
+                    this.student.hobby.push('play')
+                },
+                changehobby(){
+                    this.student.hobby.splice(0,1,'drive')
+                }
+            },
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

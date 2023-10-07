@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气：{{info}}</h2>
+        <button @click = "change">切换天气</button>
+        <hr>
+        <h3>a:{{number.a}}</h3>
+        <button @click = "add">点我a+1</button>
+        <h3>b:{{number.b}}</h3>
+        <button @click = "number.b++">点我a+1</button>
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false;
+        const vm =new Vue({
+            el:'#root',
+            data:{
+                ishot:true,
+                number:{
+                    a:3,
+                    b:4
+                }
+                 },
+            computed:{
+                info(){
+                    return this.ishot?'炎热':'凉快'
+                }
+            },
+            methods: {
+                change(){
+                    this.ishot = !this.ishot
+                },
+                add(){
+                    this.number.a++
+                }
+            },
+            watch:{
+                ishot:{
+                    immediate:true, //初始化时调用handler
+                    handler(newValue,oldValue){
+                        console.log('1')
+                    }
+                },
+                // 'number.a':{// ''
+                //     handler(){
+                //         console.log('2')
+                //     }
+                // }
+
+                number:{
+                    deep:true,//监视多级结构中的所有属性变化 a变或者b变都可以检测
+                    handler(){
+                        console.log('3')
+                    }
+                }
+            }
+        });
+     
+
+       
+    </script>
+    
+</body>
+</html>

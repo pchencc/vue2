@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气：{{info}}</h2>
+        <button @click = "change">切换天气</button>
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false;
+        const vm =new Vue({
+            el:'#root',
+            data:{
+                ishot:true
+                 },
+            computed:{
+                info(){
+                    return this.ishot?'炎热':'凉快'
+                }
+            },
+            methods: {
+                change(){
+                    this.ishot = !this.ishot
+                }
+            },
+            // watch:{
+            //     ishot:{
+            //         immediate:true, //初始化时调用handler
+            //         handler(newValue,oldValue){
+            //             console.log('1')
+            //         }
+            //     }
+            // }
+        });
+        vm.$watch('ishot',{
+            immediate:true, //初始化时调用handler
+           handler(newValue,oldValue){
+                console.log('1')
+           }
+        })
+
+       
+    </script>
+    
+</body>
+</html>

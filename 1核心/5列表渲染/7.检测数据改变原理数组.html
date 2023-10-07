@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+       <h2>爱好</h2>
+       <button @click="update">点击更新</button>
+       <ul>
+        <li v-for="h in hobby" >
+            {{h}}
+        </li>
+       </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                hobby:['吃饭','睡觉','打游戏']
+                 },
+            methods:{
+                update(){
+                    this.hobby.splice(2,1,'学习')
+                }
+
+            }
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

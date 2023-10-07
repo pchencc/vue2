@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+       <h2 :style="{opacity}">我是强大的潘晨大王</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                opacity:1//绑定样式用对象{opacity: opacity} 简写{opacity} 名字一样
+                 },
+            methods: {
+                // change(){
+                //     setInterval(()=>{
+                //      this.opacity-=0.01
+                //      if(this.opacity<=0) vm.opacity=1
+                //     },16)
+                    
+                // }
+            },
+            //挂载 vue完成模板的解析并把初始的真实dom元素放入页面后 调用mounted（只调用一次）
+            mounted() {
+                setInterval(()=>{
+                     this.opacity-=0.01
+                     if(this.opacity<=0) vm.opacity=1
+                    },16)
+            },
+        })
+        
+        // setInterval(()=>{
+        //    vm.opacity-=0.01
+        //    if(vm.opacity<=0) vm.opacity=1
+        // },16)
+        ;
+        
+
+       
+    </script>
+    
+</body>
+</html>

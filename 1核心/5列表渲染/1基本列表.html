@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="(char,index) in string">{{char}}---{{index}}</li>
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        
+        new Vue({
+            el:'#root',
+            data:{
+            persons:[
+                {id:'001',name:'pan',age:10},
+                {id:'002',name:'chen',age:14},
+                {id:'003',name:'panchen',age:18}
+            ],
+
+            car:{
+                name:'car1',
+                price:'10',
+                color:'blue'
+            },
+            string:'hello'
+
+                 }
+        });
+
+       
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-fbind:value="n">
+        <button @click="n++">点我n+1</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                n:1
+                 },
+            directives:{
+           //什么时候被调用 1.与元素成功绑定的时候(就是说一开始就调用fbind 但是这个时候还没有解析模板 所以focus不行) 
+           //模板被重新解析(data数据变化 点击按钮 重新解析 可以拿到input 这个时候focus可以有了)
+            // fbind(e,b){
+            //     e.value = b.value
+            //     e.focus()
+            // }
+
+
+            fbind:{
+                //绑定 一开始就调用
+                bind(e,b){
+                    e.value = b.value
+                },
+                
+                //指令所在元素被插入页面时
+                inserted(e,b){
+                    e.focus()
+                },
+
+                //指令所在模板被重新解析时
+                update(e,b){
+                    e.value = b.value
+                }
+
+            }
+            }
+        });
+        
+
+       
+    </script>
+    
+</body>
+</html>

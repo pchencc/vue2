@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2 >n的值：{{n}}</h2>
+        <button @click="add">加一</button>
+        <div v-if="n===1">1</div>
+        <div v-if="n===2">2</div>
+        <div v-if="n===3">3</div>
+        <div v-show="n===4">4</div>
+        <div v-show="n===5">5</div>
+       
+    </div>
+    <script>
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                n:'0'
+                 },
+            methods: {
+                add(){
+                    vm.n++
+                }
+            },
+        });
+
+       
+    </script>
+    
+</body>
+</html>
